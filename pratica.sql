@@ -40,62 +40,62 @@ id INT NOT NULL AUTO_INCREMENT
 ,nome VARCHAR(200)  NOT NULL
 ,ativo CHAR(1) NOT NULL DEFAULT 'S'
 ,data_cadastro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-,estado_id INT NOT NULL
+,estado1_id INT NOT NULL
 ,CONSTRAINT pl_cidade PRIMARY KEY (id)
-,CONSTRAINT fk_cidade_estado FOREIGN KEY (estado_id) REFERENCES estado1 (id)
+,CONSTRAINT fk_cidade_estado FOREIGN KEY (estado1_id) REFERENCES estado1 (id)
 ,CONSTRAINT cidade_ativo_deve_ser_S_ou_N CHECK (ativo IN ('S', 'N'))
-,CONSTRAINT cidade_unica UNIQUE (nome, estado_id)
+,CONSTRAINT cidade_unica UNIQUE (nome, estado1_id)
 );
 
-INSERT INTO cidade1 (nome, estado_id)
+INSERT INTO cidade1 (nome, estado1_id)
 VALUES ('CURITIBA', 1);
 
-INSERT INTO cidade1 (nome, estado_id) 
+INSERT INTO cidade1 (nome, estado1_id) 
 VALUES ('BAURU',2);
 
-INSERT INTO cidade1 (nome, estado_id) 
+INSERT INTO cidade1 (nome, estado1_id) 
 VALUES ('MARINGÁ',1);
 
-INSERT INTO cidade1 (nome, estado_id) 
+INSERT INTO cidade1 (nome, estado1_id) 
 VALUES ('GUARULHOS',2);
 
-INSERT INTO cidade1 (nome, estado_id) 
+INSERT INTO cidade1 (nome, estado1_id) 
 VALUES ('CAMPINAS',2);
 
-INSERT INTO cidade1 (nome, estado_id) 
+INSERT INTO cidade1 (nome, estado1_id) 
 VALUES ('FLORIANÓPOLIS',4);
 
-INSERT INTO cidade1 (nome, estado_id) 
+INSERT INTO cidade1 (nome, estado1_id) 
 VALUES ('PARANAVAÍ',1);
 
-INSERT INTO cidade1 (nome, estado_id) 
+INSERT INTO cidade1 (nome, estado1_id) 
 VALUES ('CUIABA',3);
 
-INSERT INTO cidade1 (nome, estado_id) 
+INSERT INTO cidade1 (nome, estado1_id) 
 VALUES ('BALNEÁRIO CAMBORIÚ',4);
 
-INSERT INTO cidade1 (nome, estado_id) 
+INSERT INTO cidade1 (nome, estado1_id) 
 VALUES ('LONDRINA',1);
 
-INSERT INTO cidade1 (nome, estado_id) 
+INSERT INTO cidade1 (nome, estado1_id) 
 VALUES ('CASCAVEL',1);
 
-INSERT INTO cidade1 (nome, estado_id) 
+INSERT INTO cidade1 (nome, estado1_id) 
 VALUES ('JOINVILLE',4);
 
-INSERT INTO cidade1 (nome, estado_id) 
+INSERT INTO cidade1 (nome, estado1_id) 
 VALUES ('PORTO ALEGRE',5);
 
-INSERT INTO cidade1 (nome, estado_id) 
+INSERT INTO cidade1 (nome, estado1_id) 
 VALUES ('BLUMENAL',4);
 
-INSERT INTO cidade1 (nome, estado_id) 
+INSERT INTO cidade1 (nome, estado1_id) 
 VALUES ('BARRA DOS GARÇAS',3);
 
-INSERT INTO cidade1 (nome, estado_id) 
+INSERT INTO cidade1 (nome, estado1_id) 
 VALUES ('CHAPECÓ',4);
 
-INSERT INTO cidade1 (nome, estado_id) 
+INSERT INTO cidade1 (nome, estado1_id) 
 VALUES ('ITAJAÍ',4);
 
 -- 1) Na inserção do estado, o usuário cometeu um erro, esquecendo de colocar acento. 
@@ -117,7 +117,7 @@ SELECT id FROM estado1 WHERE nome = 'PARANÁ';
 -- comando para alterar
 UPDATE cidade1 SET
 nome = 'MARINGÁ'
-, estado_id = 15
+, estado1_id = 15
 , ativo = 'N'
 , data_cadastro = '2020-11-15'
 WHERE id = 97;
@@ -155,3 +155,43 @@ VALUES (DEFAULT, 'RIO DE JANEIRO', 'RJ', DEFAULT, DEFAULT), (DEFAULT, 'ALAGOAS',
 -- 6. Escreva o comando para inserir 2 registros da tabela estado, definindo todos os dados, exceto a chave  primária que é auto incremento.
 INSERT INTO estado1 (nome, sigla, ativo, data_cadastro)
 VALUES ('BAHIA', 'BA', DEFAULT, DEFAULT), ('CEARÁ', 'CE', DEFAULT, DEFAULT); 
+
+-- 01 - Liste o id e o nome de todas as cidades e as respectivas siglas do estado.
+SELECT * 
+FROM estado1, cidade1;
+
+-- 02 - Em relação ao resultado do exercício anterior,note que os nomes das colunas não estão claras. Refaça o comando para que torne mais claras.
+SELECT * 
+FROM estado1, cidade1
+WHERE cidade1.estado1_id = estado1.id;
+
+-- 03 - Refaça o exercício anterior atribuindo o nome completo da tabela em todos os atributos.
+SELECT 
+	estado1.id
+    ,estado1.nome
+    ,estado1.sigla
+    ,estado1.ativo
+    ,estado1.data_cadastro
+    ,cidade1.id
+    ,cidade1.nome
+    ,cidade1.ativo
+    ,cidade1.data_cadastro
+    ,cidade1.estado1_id
+FROM estado1, cidade1
+WHERE cidade1.estado1_id = estado1.id;
+
+-- 04 - Refaça o exercício anterior definindo o apelido na tabela.
+SELECT 
+	estado1.id 'ID do Estado'
+    ,estado1.nome 'Nome do Estado'
+    ,estado1.sigla 'Sigla'
+    ,estado1.ativo 'O Estado está ATIVO?'
+    ,estado1.data_cadastro 'Data do cadastro'
+    ,cidade1.id 'ID da cidade'
+    ,cidade1.nome 'Nome da cidade'
+    ,cidade1.ativo 'A cidade está ATIVA?'
+    ,cidade1.data_cadastro 'Data do cadastro'
+    ,cidade1.estado1_id 'ID referencia do Estado'
+FROM estado1, cidade1
+WHERE cidade1.estado1_id = estado1.id;
+
