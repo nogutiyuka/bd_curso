@@ -43,6 +43,49 @@ VALUES ('CURITIBA', 1);
 
 SELECT * FROM cidade;
 
+ALTER TABLE estado ADD COLUMN regiao INT;
 
+
+SELECT * FROM estado;
+DESCRIBE estado; 
+DESC estado;
+
+ALTER TABLE estado MODIFY COLUMN regiao VARCHAR(10);
+DESC estado;		
+
+ALTER TABLE estado MODIFY COLUMN regiao VARCHAR(100);
+DESC estado;			
+
+ALTER TABLE estado MODIFY COLUMN regiao VARCHAR(100) NOT NULL;
+SELECT * FROM estado;
+
+ALTER TABLE estado DROP COLUMN regiao;
+ALTER TABLE estado ADD COLUMN regiao VARCHAR(100) NOT NULL DEFAULT '';
+SELECT * FROM estado;
+
+ALTER TABLE estado DROP COLUMN regiao;
+ALTER TABLE estado ADD COLUMN regiao VARCHAR(100) NOT NULL DEFAULT '' FIRST;
+
+ALTER TABLE estado MODIFY COLUMN regiao VARCHAR(100) FIRST;
+
+DESC estado;
+
+ALTER TABLE estado DROP COLUMN regiao;
+ALTER TABLE estado ADD COLUMN regiao VARCHAR(100) NOT NULL DEFAULT '' AFTER nome;
+
+ALTER TABLE estado MODIFY COLUMN regiao VARCHAR(100) AFTER nome;
+
+DESC estado;
+
+ALTER TABLE estado CHANGE regiao regiao_estado VARCHAR(100) NOT NULL DEFAULT '' AFTER sigla;
+ALTER TABLE estado CHANGE regiao_estado regiao VARCHAR(100) NOT NULL DEFAULT '' AFTER sigla;
+
+ALTER TABLE estado DROP CONSTRAINT estado_ativo_deve_ser_S_ou_N;
+ALTER TABLE estado MODIFY ativo ENUM('S','N') NOT NULL;
+
+SELECT * FROM estado;
+
+INSERT INTO estado (nome, sigla, ativo) 
+VALUES ('MATO GROSSO','MT','A');
 
 
