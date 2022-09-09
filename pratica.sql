@@ -131,6 +131,23 @@ DELETE FROM estado1 WHERE id = 57;
 -- agora sim, eliminando o estado com id 23
 DELETE FROM estado1 WHERE id = 23;
 
+ 
+-- 7. Escreva o comando para inserir 2 registros da tabela estado, definindo somente os dados necessários. 
+INSERT INTO estado1 (nome, sigla)
+VALUES ('DISTRÍTO FEDERAL', 'DF'), ('ESPÍRITO SANTO', 'ES');
+
+-- 6.	Escreva o comando para seleccionar todos os registros da tabela cidade com todas as colunas.
+SELECT * FROM cidade1; 
+
+-- 7.	Escreva o comando para seleccionar o nome de todos os registros da tabela cidade.
+SELECT nome FROM cidade1;
+
+-- 9.	Escreva o comando para alterar o valor de uma coluna de um único registro de uma tabela utilizando como filtro, o Primary Key.
+UPDATE cidade1 SET nome = 'MARINGA' WHERE id = 3;
+
+-- 10.	Refaça o exercício anterior alterando os dados de mais que uma coluna de um único registro sem utilizar como filtro a chave primária. A escolha da coluna do filtro é muito importante – TOME CUIDADO;
+UPDATE cidade1 SET nome = 'MARINGÁ', ativo = 'N' WHERE nome = 'MARINGA';
+
 -- 5. Escreva o comando para inserir 3 registros da tabela estado com todas as colunas. 
 INSERT INTO estado1 
 VALUES (DEFAULT, 'RIO DE JANEIRO', 'RJ', DEFAULT, DEFAULT), (DEFAULT, 'ALAGOAS', 'AL', DEFAULT, DEFAULT), (DEFAULT, 'AMAPÁ', 'AM', DEFAULT, DEFAULT);
@@ -138,7 +155,3 @@ VALUES (DEFAULT, 'RIO DE JANEIRO', 'RJ', DEFAULT, DEFAULT), (DEFAULT, 'ALAGOAS',
 -- 6. Escreva o comando para inserir 2 registros da tabela estado, definindo todos os dados, exceto a chave  primária que é auto incremento.
 INSERT INTO estado1 (nome, sigla, ativo, data_cadastro)
 VALUES ('BAHIA', 'BA', DEFAULT, DEFAULT), ('CEARÁ', 'CE', DEFAULT, DEFAULT); 
- 
--- 7. Escreva o comando para inserir 2 registros da tabela estado, definindo somente os dados necessários. 
-INSERT INTO estado1 (nome, sigla)
-VALUES ('DISTRÍTO FEDERAL', 'DF'), ('ESPÍRITO SANTO', 'ES');
