@@ -130,3 +130,15 @@ DELETE FROM estado1 WHERE id = 57;
 
 -- agora sim, eliminando o estado com id 23
 DELETE FROM estado1 WHERE id = 23;
+
+-- 5. Escreva o comando para inserir 3 registros da tabela estado com todas as colunas. 
+INSERT INTO estado1 
+VALUES (DEFAULT, 'RIO DE JANEIRO', 'RJ', DEFAULT, DEFAULT), (DEFAULT, 'ALAGOAS', 'AL', DEFAULT, DEFAULT), (DEFAULT, 'AMAPÁ', 'AM', DEFAULT, DEFAULT);
+
+-- 6. Escreva o comando para inserir 2 registros da tabela estado, definindo todos os dados, exceto a chave  primária que é auto incremento.
+INSERT INTO estado1 (nome, sigla, ativo, data_cadastro)
+VALUES ('BAHIA', 'BA', DEFAULT, DEFAULT), ('CEARÁ', 'CE', DEFAULT, DEFAULT); 
+ 
+-- 7. Escreva o comando para inserir 2 registros da tabela estado, definindo somente os dados necessários. 
+INSERT INTO estado1 (nome, sigla)
+VALUES ('DISTRÍTO FEDERAL', 'DF'), ('ESPÍRITO SANTO', 'ES');
